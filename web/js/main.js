@@ -10,17 +10,28 @@ var app = new Vue({
   methods: {
     addTask() {
       this.todos.push({text: this.newTask, completed: false, index: this.total });
-      console.log(this.todos[this.total].text);
-      console.log(this.todos[this.total].completed);
-      console.log(this.todos[this.total].index);
+      //console.log(this.todos[this.total].text);
+      //console.log(this.todos[this.total].completed);
+      //console.log(this.todos[this.total].index);
  
-      console.log(this.newTask);
+      //console.log(this.newTask);
       this.total++;
       this.newTask = '';
     },
     showStatus(index) {
-      console.log('we are here');
-      console.log(this.todos[index].completed);
+      //console.log(this.todos[index].completed);
+    },
+    completeAll() {
+      
+      for(var i = 0; i < this.todos.length; i++){
+        this.todos[i].completed = true;
+      }
+    },
+    reactivateAll() {
+
+      for(var i = 0; i < this.todos.length; i++){
+        this.todos[i].completed = false;
+      }
     }
   },
   computed: {
@@ -34,6 +45,9 @@ var app = new Vue({
       return this.todos.filter((todo) => todo.completed == true)
     },
     still() {
+      return this.todos.filter((todo) => todo.completed == false)
+    },
+    countList() {
       return this.todos.filter((todo) => todo.completed == false)
     }
   }
